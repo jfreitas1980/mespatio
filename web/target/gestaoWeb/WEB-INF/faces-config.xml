@@ -1,0 +1,538 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+   
+ <faces-config version="1.1" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xi="http://www.w3.org/2001/XInclude"  
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+     xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_1.xsd">     
+
+	<application>
+        <message-bundle>messages</message-bundle>
+        <locale-config>
+           <default-locale>en_US</default-locale>
+           <supported-locale>pt_BR</supported-locale>
+           <supported-locale>en_US</supported-locale>
+        </locale-config>
+    </application>
+    
+    <!-- Conversores --> 
+    <converter>
+        <converter-id>tipoProdutoConversor</converter-id>
+        <converter-class>com.hdntec.gestao.web.converter.TipoProdutoConversor</converter-class>
+    </converter>
+ 
+ <converter>
+        <converter-id>tipoItemConversor</converter-id>
+        <converter-class>com.hdntec.gestao.web.converter.TipoItemControleConversor</converter-class>
+    </converter>
+ 
+ 
+ <converter>
+        <converter-id>tipoItemEnumConversor</converter-id>
+        <converter-class>com.hdntec.gestao.web.converter.TipoItemControleEnumConversor</converter-class>
+    </converter>
+ 
+ 
+    <converter>
+        <converter-id>tipoDeProdutoEnumConversor</converter-id>
+        <converter-class>com.hdntec.gestao.web.converter.TipoDeProdutoEnumConversor</converter-class>
+    </converter>
+    <converter>
+        <converter-id>valorRegraFarolEnumConversor</converter-id>
+        <converter-class>com.hdntec.gestao.web.converter.ValorRegraFarolEnumConversor</converter-class>
+    </converter>
+    <converter>
+        <converter-id>tipoMetaInternaEnumConversor</converter-id>
+        <converter-class>com.hdntec.gestao.web.converter.TipoMetaInternaEnumConversor</converter-class>
+    </converter>
+    <converter>
+        <converter-id>corTipoProdutoConversor</converter-id>
+        <converter-class>com.hdntec.gestao.web.converter.CorTipoProdutoConversor</converter-class>
+    </converter>
+    <converter>
+        <converter-id>metaInternaConversor</converter-id>
+        <converter-class>com.hdntec.gestao.web.converter.MetaInternaConversor</converter-class>
+    </converter>
+    <converter>
+        <converter-id>regraFarolConversor</converter-id>
+        <converter-class>com.hdntec.gestao.web.converter.RegraFarolConversor</converter-class>
+    </converter>
+    <converter>
+        <converter-id>tipoBalizaConversor</converter-id>
+        <converter-class>com.hdntec.gestao.web.converter.TipoBalizaConversor</converter-class>
+    </converter>
+    
+    <converter>
+        <converter-id>coeficienteDeDegradacaoConversor</converter-id>
+        <converter-class>com.hdntec.gestao.web.converter.CoeficienteDeDegradacaoConversor</converter-class>
+    </converter>    
+    <converter>
+        <converter-id>estadoMaquinaEnumConversor</converter-id>
+        <converter-class>com.hdntec.gestao.web.converter.EstadoMaquinaEnumConversor</converter-class>
+    </converter>
+    <converter>
+        <converter-id>dataConversor</converter-id>
+        <converter-class>com.hdntec.gestao.web.converter.DataConversor</converter-class>
+    </converter>
+    <converter>
+        <converter-id>navioConversor</converter-id>
+        <converter-class>com.hdntec.gestao.web.converter.NavioConversor</converter-class>
+    </converter>
+    <converter>
+        <converter-id>balizaConversor</converter-id>
+        <converter-class>com.hdntec.gestao.web.converter.BalizaConversor</converter-class>
+    </converter>
+    <converter>
+        <converter-id>tipoMaquinaEnumConversor</converter-id>
+        <converter-class>com.hdntec.gestao.web.converter.TipoMaquinaEnumConversor</converter-class>
+    </converter>
+    <converter>
+        <converter-id>campanhaConversor</converter-id>
+        <converter-class>com.hdntec.gestao.web.converter.CampanhaConversor</converter-class>
+    </converter>
+    <converter>
+        <converter-id>atividadeConversor</converter-id>
+        <converter-class>com.hdntec.gestao.web.converter.AtividadeConversor</converter-class>
+    </converter>
+    <converter>
+        <converter-id>patioConversor</converter-id>
+        <converter-class>com.hdntec.gestao.web.converter.PatioConversor</converter-class>
+    </converter>     
+       
+    <!-- Beans -->
+    
+    <managed-bean>
+		<managed-bean-name>loginControllerBean</managed-bean-name>
+		<managed-bean-class>
+			com.hdntec.gestao.web.controller.LoginControllerBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	
+    <managed-bean>
+        <managed-bean-name>tipoProdutoController</managed-bean-name>
+        <managed-bean-class>com.hdntec.gestao.web.controller.TipoProdutoController</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>regraFarolController</managed-bean-name>
+        <managed-bean-class>com.hdntec.gestao.web.controller.RegraFarolController</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>metaInternaController</managed-bean-name>
+        <managed-bean-class>com.hdntec.gestao.web.controller.MetaInternaController</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>    
+    <managed-bean>
+        <managed-bean-name>coeficienteDeDegradacaoController</managed-bean-name>
+        <managed-bean-class>com.hdntec.gestao.web.controller.CoeficienteDeDegradacaoController</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>  
+    <managed-bean>
+        <managed-bean-name>tipoItemDeControleController</managed-bean-name>
+        <managed-bean-class>com.hdntec.gestao.web.controller.TipoItemDeControleController</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>      
+    <managed-bean>
+        <managed-bean-name>plantaController</managed-bean-name>
+        <managed-bean-class>com.hdntec.gestao.web.controller.PlantaController</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>pierController</managed-bean-name>
+        <managed-bean-class>com.hdntec.gestao.web.controller.PierController</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>patioController</managed-bean-name>
+        <managed-bean-class>com.hdntec.gestao.web.controller.PatioController</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>balizaController</managed-bean-name>
+        <managed-bean-class>com.hdntec.gestao.web.controller.BalizaController</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>carregadoraDeNaviosController</managed-bean-name>
+        <managed-bean-class>com.hdntec.gestao.web.controller.CarregadoraDeNaviosController</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>    
+    <managed-bean>
+        <managed-bean-name>bercoController</managed-bean-name>
+        <managed-bean-class>com.hdntec.gestao.web.controller.BercoController</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>maquinaDoPatioController</managed-bean-name>
+        <managed-bean-class>com.hdntec.gestao.web.controller.MaquinaDoPatioController</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>usinaController</managed-bean-name>
+        <managed-bean-class>com.hdntec.gestao.web.controller.UsinaController</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>correiaController</managed-bean-name>
+        <managed-bean-class>com.hdntec.gestao.web.controller.CorreiaController</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>    
+
+	<!--  regras de navegacao -->
+	<navigation-rule>
+		<from-view-id>index.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/Init.jsp</to-view-id>
+		</navigation-case>		
+		<navigation-case>
+			<from-outcome>failed</from-outcome>
+			<to-view-id>/Error500.jsp</to-view-id>
+		</navigation-case>	 
+	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>/ViewLogin.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/Init.jsp</to-view-id>
+		</navigation-case>		
+		<navigation-case>
+			<from-outcome>failed</from-outcome>
+			<to-view-id>/Error500.jsp</to-view-id>
+		</navigation-case>	 
+	</navigation-rule>
+	
+	<navigation-rule>
+		<display-name>cadastros/tipoProdutoList</display-name>
+		<from-view-id>/cadastros/tipoProdutoList.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>novoTipoProduto</from-outcome>
+			<to-view-id>/cadastros/tipoProdutoView.jsp</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>cadastros/tipoProdutoList</display-name>
+		<from-view-id>/cadastros/tipoProdutoList.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>atualizarTipoProduto</from-outcome>
+			<to-view-id>/cadastros/tipoProdutoView.jsp</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>cadastros/tipoProdutoView</display-name>
+		<from-view-id>/cadastros/tipoProdutoView.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>cancelarTipoProduto</from-outcome>
+			<to-view-id>/cadastros/tipoProdutoList.jsp</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+    <navigation-rule>
+        <display-name>cadastros/regraFarolList</display-name>
+        <from-view-id>/cadastros/regraFarolList.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>novaRegraFarol</from-outcome>
+            <to-view-id>/cadastros/regraFarolView.jsp</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <display-name>cadastros/regraFarolList</display-name>
+        <from-view-id>/cadastros/regraFarolList.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>atualizarRegraFarol</from-outcome>
+            <to-view-id>/cadastros/regraFarolView.jsp</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <display-name>cadastros/regraFarolView</display-name>
+        <from-view-id>/cadastros/regraFarolView.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>cancelarRegraFarol</from-outcome>
+            <to-view-id>/cadastros/regraFarolList.jsp</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <display-name>cadastros/metaInternaList</display-name>
+        <from-view-id>/cadastros/metaInternaList.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>novaMetaInterna</from-outcome>
+            <to-view-id>/cadastros/metaInternaView.jsp</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <display-name>cadastros/metaInternaList</display-name>
+        <from-view-id>/cadastros/metaInternaList.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>atualizarMetaInterna</from-outcome>
+            <to-view-id>/cadastros/metaInternaView.jsp</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <display-name>cadastros/metaInternaView</display-name>
+        <from-view-id>/cadastros/metaInternaView.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>cancelarMetaInterna</from-outcome>
+            <to-view-id>/cadastros/metaInternaList.jsp</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <display-name>cadastros/coeficienteDegradacaoList</display-name>
+        <from-view-id>/cadastros/coeficienteDegradacaoList.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>novoCoeficienteDeDegradacao</from-outcome>
+            <to-view-id>/cadastros/coeficienteDegradacaoView.jsp</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <display-name>cadastros/coeficienteDegradacaoList</display-name>
+        <from-view-id>/cadastros/coeficienteDegradacaoList.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>atualizarCoeficienteDeDegradacao</from-outcome>
+            <to-view-id>/cadastros/coeficienteDegradacaoView.jsp</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <display-name>cadastros/coeficienteDegradacaoView</display-name>
+        <from-view-id>/cadastros/coeficienteDegradacaoView.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>cancelarCoeficienteDeDegradacao</from-outcome>
+            <to-view-id>/cadastros/coeficienteDegradacaoList.jsp</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <display-name>cadastros/tipoItemControleList</display-name>
+        <from-view-id>/cadastros/tipoItemControleList.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>novoTipoItemDeControle</from-outcome>
+            <to-view-id>/cadastros/tipoItemControleView.jsp</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <display-name>cadastros/tipoItemControleList</display-name>
+        <from-view-id>/cadastros/tipoItemControleList.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>atualizarTipoItemDeControle</from-outcome>
+            <to-view-id>/cadastros/tipoItemControleView.jsp</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <display-name>cadastros/tipoItemControleView</display-name>
+        <from-view-id>/cadastros/tipoItemControleView.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>cancelarTipoItemDeControle</from-outcome>
+            <to-view-id>/cadastros/tipoItemControleList.jsp</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>
+    <!-- Planta -->
+    <navigation-rule>
+        <display-name>cadastros/plantaList</display-name>
+        <from-view-id>/cadastros/plantaList.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>novaPlanta</from-outcome>
+            <to-view-id>/cadastros/plantaView.jsp</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <display-name>cadastros/plantaList</display-name>
+        <from-view-id>/cadastros/plantaList.jsp</from-view-id>
+        <navigation-case>        
+            <from-outcome>atualizarPlanta</from-outcome>
+            <to-view-id>/cadastros/plantaView.jsp</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <display-name>cadastros/plantaView</display-name>
+        <from-view-id>/cadastros/plantaView.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>cancelarPlanta</from-outcome>
+            <to-view-id>/cadastros/plantaList.jsp</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>
+    <!-- Pier -->
+    <navigation-rule>
+        <display-name>cadastros/plantaView</display-name>
+        <from-view-id>/cadastros/plantaView.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>atualizarPier</from-outcome>
+            <to-view-id>/cadastros/pierView.jsp</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <display-name>cadastros/pierView</display-name>
+        <from-view-id>/cadastros/pierView.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>voltarPier</from-outcome>
+            <to-view-id>/cadastros/plantaView.jsp</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>
+    <!-- Patio -->
+    <navigation-rule>
+        <display-name>cadastros/plantaView</display-name>
+        <from-view-id>/cadastros/plantaView.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>atualizarPatio</from-outcome>
+            <to-view-id>/cadastros/patioView.jsp</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <display-name>cadastros/patioView</display-name>
+        <from-view-id>/cadastros/patioView.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>voltarPatio</from-outcome>
+            <to-view-id>/cadastros/plantaView.jsp</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>
+    <!-- Baliza -->
+    <navigation-rule>
+        <display-name>cadastros/patioView</display-name>
+        <from-view-id>/cadastros/patioView.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>atualizarBaliza</from-outcome>
+            <to-view-id>/cadastros/balizaView.jsp</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <display-name>cadastros/balizaView</display-name>
+        <from-view-id>/cadastros/balizaView.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>voltarBaliza</from-outcome>
+            <to-view-id>/cadastros/patioView.jsp</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>
+    <!-- Carregadora -->
+    <navigation-rule>
+        <display-name>cadastros/pierView</display-name>
+        <from-view-id>/cadastros/pierView.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>atualizarCarregadora</from-outcome>
+            <to-view-id>/cadastros/carregadoraDeNaviosView.jsp</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <display-name>cadastros/carregadoraView</display-name>
+        <from-view-id>/cadastros/carregadoraDeNaviosView.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>voltarCarregadora</from-outcome>
+            <to-view-id>/cadastros/pierView.jsp</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>    
+    <!-- Berco -->
+    <navigation-rule>
+        <display-name>cadastros/pierView</display-name>
+        <from-view-id>/cadastros/pierView.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>atualizarBerco</from-outcome>
+            <to-view-id>/cadastros/bercoView.jsp</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <display-name>cadastros/bercoView</display-name>
+        <from-view-id>/cadastros/bercoView.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>voltarBerco</from-outcome>
+            <to-view-id>/cadastros/pierView.jsp</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>
+    <!-- Maquina do Patio -->
+    <navigation-rule>
+        <display-name>cadastros/patioView</display-name>
+        <from-view-id>/cadastros/patioView.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>atualizarMaquinaPatio</from-outcome>
+            <to-view-id>/cadastros/maquinaDoPatioView.jsp?origemCadastro=Patio</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <display-name>cadastros/maquinaDoPatioView</display-name>
+        <from-view-id>/cadastros/maquinaDoPatioView.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>voltarMaquinaPatio</from-outcome>
+            <to-view-id>/cadastros/patioView.jsp</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>   
+	<navigation-rule>
+        <display-name>cadastros/correiaView</display-name>
+        <from-view-id>/cadastros/correiaView.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>atualizarMaquinaCorreia</from-outcome>
+            <to-view-id>/cadastros/maquinaDoPatioView.jsp?origemCadastro=Correia</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <display-name>cadastros/maquinaDoPatioView</display-name>
+        <from-view-id>/cadastros/maquinaDoPatioView.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>voltarMaquinaCorreia</from-outcome>
+            <to-view-id>/cadastros/correiaView.jsp</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>       
+    <!-- Usina -->
+	<navigation-rule>
+        <display-name>cadastros/plantaView</display-name>
+        <from-view-id>/cadastros/plantaView.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>atualizarUsina</from-outcome>
+            <to-view-id>/cadastros/usinaView.jsp</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <display-name>cadastros/usinaView</display-name>
+        <from-view-id>/cadastros/usinaView.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>voltarUsina</from-outcome>
+            <to-view-id>/cadastros/plantaView.jsp</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>
+    <!-- Correia -->
+	<navigation-rule>
+        <display-name>cadastros/plantaView</display-name>
+        <from-view-id>/cadastros/plantaView.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>atualizarCorreia</from-outcome>
+            <to-view-id>/cadastros/correiaView.jsp</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <display-name>cadastros/correiaView</display-name>
+        <from-view-id>/cadastros/correiaView.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>voltarCorreia</from-outcome>
+            <to-view-id>/cadastros/plantaView.jsp</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>    
+</faces-config>

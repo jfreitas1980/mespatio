@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Built-By: marcelolopes
+Build-Jdk: 11.0.8
+Class-Path: domain-1.0.jar commons-beanutils-1.7.0.jar commons-logging-1
+ .0.3.jar jxl-2.6.12.jar log4j-1.2.14.jar login-1.0.jar commons-discover
+ y-0.2.jar jaxrpc-api-1.1.jar axis-1.1.jar
+Created-By: Maven Integration for Eclipse
+

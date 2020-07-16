@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD//EN"
+"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>		
+		  <property
+			name="hibernate.connection.url">jdbc:oracle:thin:@oracle.hdnmobile.kinghost.net:1521/oracle</property>	
+			<property name="hibernate.connection.username">hdnmobile</property>
+			<property name="hibernate.connection.password">hdnpass32</property>		
+		<property name="hibernate.hbm2ddl.auto">update</property>
+		<!--	
+		<property name="hibernate.hbm2ddl.auto">create</property>
+    	<property			
+			name="hibernate.connection.url">jdbc:oracle:thin:@10.102.0.4:1521:ubu</property>	
+		
+		 <property
+			name="hibernate.connection.url">jdbc:oracle:thin:@localhost:1521:xe</property>
+			<property
+			 
+			name="hibernate.connection.url">jdbc:oracle:thin:@10.102.0.2:1590:ubuh</property>							
+			
+			<property name="hibernate.connection.datasource">java:/OracleDS</property>
+			<property
+			name="hibernate.connection.url">jdbc:oracle:thin:@localhost:1521:xe</property>
+			<property name="hibernate.connection.username">mespatio</property>
+			<property name="hibernate.connection.password">mespatio</property>
+			<property name="hibernate.cache.provider_class">net.sf.ehcache.hibernate.EhCacheProvider</property>
+		-->				
+		<property name="hibernate.dialect">org.hibernate.dialect.OracleDialect</property>
+		<property name="hibernate.show_sql">true</property>
+		<property name="hibernate.format_sql">true</property>
+		
+		<property name="hibernate.cache.use_second_level_cache">false</property>
+		<property name="hibernate.cache.use_query_cache">false</property>
+		<property name="hibernate.transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</property>
+		<property name="hibernate.cache.use_structured_entries">false</property>
+		<property name="hibernate.c3p0.min_size">1</property>
+		<property name="hibernate.c3p0.max_size">10</property>
+		<property name="hibernate.c3p0.max_statements">500</property>
+
+ 		
+		<mapping
+			class="com.hdntec.gestao.domain.planta.entity.MetaMaquinaDoPatio" />
+		<mapping
+			class="com.hdntec.gestao.domain.planta.entity.MetaUsina" />
+		<mapping
+			class="com.hdntec.gestao.domain.planta.entity.MetaFiltragem" />
+		<mapping
+			class="com.hdntec.gestao.domain.planta.entity.MetaCorreia" />
+		<mapping
+			class="com.hdntec.gestao.domain.planta.entity.MetaCarregadoraDeNavios" />
+		<mapping
+			class="com.hdntec.gestao.domain.navios.entity.MetaNavio" />
+		<mapping
+			class="com.hdntec.gestao.domain.navios.entity.MetaCarga" />
+	
+		<mapping
+			class="com.hdntec.gestao.domain.planta.entity.MetaBaliza" />
+		<mapping
+			class="com.hdntec.gestao.domain.planta.entity.MetaPatio" />		
+		<mapping
+			class="com.hdntec.gestao.domain.planta.entity.MetaBerco" />
+		<mapping
+			class="com.hdntec.gestao.domain.planta.entity.MetaPier" />
+		
+		<mapping
+			class="com.hdntec.gestao.domain.plano.entity.Atividade" />
+		<mapping
+			class="com.hdntec.gestao.domain.navios.entity.status.Carga" />
+		<mapping
+			class="com.hdntec.gestao.domain.navios.entity.status.Navio" />		
+		<mapping
+			class="com.hdntec.gestao.domain.navios.entity.status.OrientacaoDeEmbarque" />
+		<mapping
+			class="com.hdntec.gestao.domain.navios.entity.status.Cliente" />
+		<mapping
+			class="com.hdntec.gestao.domain.plano.entity.SituacaoPatio" />
+		<mapping
+			class="com.hdntec.gestao.domain.plano.entity.PlanoEmpilhamentoRecuperacao" />
+		<mapping
+			class="com.hdntec.gestao.domain.produto.entity.Produto" />
+		<mapping
+			class="com.hdntec.gestao.domain.produto.entity.Rastreabilidade" />
+		<mapping
+			class="com.hdntec.gestao.domain.produto.entity.Qualidade" />
+		<mapping
+			class="com.hdntec.gestao.domain.produto.entity.Amostra" />
+		<mapping
+			class="com.hdntec.gestao.domain.produto.entity.TipoItemDeControle" />
+		
+		<mapping
+			class="com.hdntec.gestao.domain.produto.entity.TipoItemCoeficiente" />
+		
+		<mapping
+			class="com.hdntec.gestao.domain.produto.entity.TipoItemRegraFarol" />
+		
+		
+		<mapping
+			class="com.hdntec.gestao.domain.produto.entity.TipoProduto" />
+		<mapping
+			class="com.hdntec.gestao.domain.produto.entity.ItemDeControleAmostra" />
+		<mapping
+			class="com.hdntec.gestao.domain.produto.entity.ItemDeControleOrientacaoEmbarque" />
+		<mapping
+			class="com.hdntec.gestao.domain.produto.entity.ItemDeControleQualidade" />
+		<mapping
+			class="com.hdntec.gestao.domain.produto.entity.MetaInterna" />
+				
+		<mapping
+			class="com.hdntec.gestao.domain.planta.entity.status.Berco" />
+		<mapping
+			class="com.hdntec.gestao.domain.planta.entity.status.Campanha" />
+		<mapping
+			class="com.hdntec.gestao.domain.planta.entity.status.CarregadoraDeNavios" />
+		<mapping
+			class="com.hdntec.gestao.domain.planta.entity.status.Correia" />
+		<mapping
+			class="com.hdntec.gestao.domain.planta.entity.status.ManutencaoMaquina" />
+		
+		<mapping
+			class="com.hdntec.gestao.domain.planta.entity.status.ManutencaoCorreia" />
+		
+		<mapping
+			class="com.hdntec.gestao.domain.planta.entity.status.Interdicao" />		
+		<mapping
+			class="com.hdntec.gestao.domain.planta.entity.status.MaquinaDoPatio" />
+		<mapping
+			class="com.hdntec.gestao.domain.planta.entity.status.Patio" />
+		<mapping
+			class="com.hdntec.gestao.domain.planta.entity.status.Pier" />
+		<mapping
+			class="com.hdntec.gestao.domain.planta.entity.status.Planta" />
+		<mapping
+			class="com.hdntec.gestao.domain.planta.entity.status.Usina" />
+		<mapping
+			class="com.hdntec.gestao.domain.planta.entity.status.Filtragem" />
+		<mapping
+			class="com.hdntec.gestao.domain.planta.entity.status.RegistroDaAnotacao" />
+		<mapping
+			class="com.hdntec.gestao.domain.planta.entity.status.Anotacao" />	
+		<mapping
+			class="com.hdntec.gestao.domain.planta.entity.status.Pilha" />
+		<mapping
+			class="com.hdntec.gestao.domain.plano.entity.LugarEmpilhamentoRecuperacao" />
+				<mapping
+			class="com.hdntec.gestao.domain.plano.entity.MovimentacaoNavio" />
+		
+		<mapping
+			class="com.hdntec.gestao.domain.planta.entity.status.Baliza" />
+		<mapping
+			class="com.hdntec.gestao.domain.planta.entity.status.AtividadeCampanha" />
+		<mapping
+			class="com.hdntec.gestao.domain.relatorio.CampoRelatorio" />
+		<mapping
+			class="com.hdntec.gestao.domain.relatorio.PadraoRelatorio" />
+		<mapping
+			class="com.hdntec.gestao.domain.relatorio.PadraoCampo" />
+		<mapping
+			class="com.hdntec.gestao.domain.relatorio.Relatorio" />
+		<mapping
+			class="com.hdntec.gestao.domain.relatorio.FaixaAmostragemFrequencia" />
+		<mapping
+			class="com.hdntec.gestao.domain.relatorio.ItemAmostragemFrequencia" />
+		<mapping
+			class="com.hdntec.gestao.domain.relatorio.TabelaAmostragemFrequencia" />		
+			
+				<mapping class="com.hdntec.gestao.domain.integracao.IntegracaoSAP" />
+		<mapping class="com.hdntec.gestao.domain.integracao.IntegracaoCargaCRM" />
+
+		<mapping class="com.hdntec.gestao.domain.integracao.IntegracaoItemControleCRM" />
+		
+		<mapping class="com.hdntec.gestao.domain.integracao.IntegracaoMaquinaPIMS" />
+		<mapping class="com.hdntec.gestao.domain.integracao.IntegracaoMES" />
+		<mapping class="com.hdntec.gestao.domain.integracao.IntegracaoNavioCRM" />
+		
+			<mapping class="com.hdntec.gestao.domain.integracao.IntegracaoOrientEmbarqueCRM" />
+		<mapping class="com.hdntec.gestao.domain.integracao.IntegracaoParametros" />
+		<mapping class="com.hdntec.gestao.domain.integracao.IntegracaoRPUSINAS" />
+	</session-factory>
+</hibernate-configuration>

@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Main-Class: br.com.cflex.supervision.stockyard.integracaoSistemasExter
+ nos.IntegracaoSistemasExternosInicio
+Class-Path: lib/log4j.jar   lib/ojdbc14_g.jar   lib/postgresql-8.2-506.jdbc2.jar

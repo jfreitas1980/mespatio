@@ -1,0 +1,129 @@
+body {
+    font: normal 11px Verdana;
+}
+
+a:link {
+    text-decoration: none;
+    color: #686868;
+}
+
+a:visited {
+    text-decoration: none;
+    color: #686868;
+}
+
+a:hover {
+    text-decoration: none;
+    color: #383838;
+}
+
+a:active {
+    text-decoration: none;
+    color: #686868;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+ul a {
+    text-decoration: none;
+    display: block;
+    padding: 5px;
+    width: 140px;
+}
+
+ul a:hover {
+    text-decoration: none;
+}
+
+ul li {
+    float: left;
+    position: relative;
+}
+
+ul li ul {
+    list-style: none;
+    position: absolute;
+    left: 0;
+    top: 100%;
+    display: none;
+    /*width: 150px;*/
+}
+
+ul li:hover ul { display: block; }
+
+ul li:hover ul li ul { display: none; }
+
+ul li ul li:hover ul {
+    display: block;
+    position: absolute;
+    left: 0px;
+    top: -1px;
+}
+#basem a {
+    text-decoration: none;
+    color: #FFFFFF;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-bottom: 0;
+    background-image: url(../imagens/botao_menu-b.png);
+    text-decoration: none;
+    color: #FFFFFF;
+    /*width: 150px*/
+}
+
+#basem a:link {
+    text-decoration: none;
+    color: #FFFFFF;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-bottom: 0;
+    background-image: url(../imagens/botao_menu-b.png);
+    text-decoration: none;
+    color: #FFFFFF;
+    /*width: 150px*/
+}
+
+#basem a:visited {
+    text-decoration: none;
+    color: #FFFFFF;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-bottom: 0;
+    background-image: url(../imagens/botao_menu-b.jpg);
+    text-decoration: none;
+    color: #FFFFFF;
+    /*width: 150px*/
+}
+
+#basem a:hover {
+    text-decoration: none;
+    color: #FFFFFF;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-bottom: 0;
+    background-image: url(../imagens/batao_menu-a.jpg);
+    text-decoration: none;
+    color: #FFFFFF;
+}
+.itemm {
+    text-decoration: none;
+    color: #686868;
+    background: #EEEEEE;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-bottom: 0;
+}
+
+.itemmover {
+    text-decoration: none;
+    color: #383838;
+    background: #D9D9D9;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-bottom: 0;
+    cursor: pointer;
+}

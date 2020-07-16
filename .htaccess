@@ -1,0 +1,7 @@
+AuthName "Passwd required"
+AuthType Basic
+AuthGroupFile /var/www/projetos/dss-stockyard-samarco/.htgroup
+AuthUserFile /var/www/projetos/dss-stockyard-samarco/.htpasswd
+<Limit GET POST>
+require group cflex
+</Limit>

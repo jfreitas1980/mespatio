@@ -1,0 +1,40 @@
+Manifest-Version: 1.0
+Ant-Version: Apache Ant 1.7.1
+Created-By: 10.0-b23 (Sun Microsystems Inc.)
+Main-Class: br.com.cflex.supervision.stockYard.cliente.interfaceDeDial
+ ogo.InterfaceInicial
+Class-Path: lib/dssStockYardDomain-1.0.jar lib/dssStockYardServices-1.0.jar 
+ lib/aspectjlib.jar lib/aspectjrt.jar lib/aspectjtools.jar lib/dssStockYardSamarcoIntegracao-1.0.jar 
+ lib/aspectjweaver.jar lib/axis-1.1.jar lib/commons-codec.jar lib/comm
+ ons-collections.jar lib/commons-discovery-0.2.jar lib/commons-httpcli
+ ent.jar lib/commons-logging.jar lib/concurrent.jar lib/dom4j.jar lib/
+ ejb3-persistence.jar lib/hibernate-annotations.jar lib/hibernate-enti
+ tymanager.jar lib/hibernate3.jar lib/javax.jms.jar lib/jaxrpc-1.1.jar
+  lib/jboss-aop-client.jar lib/jboss-appclient.jar lib/jboss-aspect-jd
+ k50-client.jar lib/jboss-client.jar lib/jboss-common-core.jar lib/jbo
+ ss-deployers-client-spi.jar lib/jboss-deployers-client.jar lib/jboss-
+ deployers-core-spi.jar lib/jboss-deployers-core.jar lib/jboss-deploye
+ rs-vfs.jar lib/jboss-deployment.jar lib/jboss-ejb3-common-client.jar 
+ lib/jboss-ejb3-core-client.jar lib/jboss-ejb3-ext-api.jar lib/jboss-e
+ jb3-proxy-client.jar lib/jboss-ejb3-proxy-clustered-client.jar lib/jb
+ oss-ejb3-security-client.jar lib/jboss-ejb3x.jar lib/jboss-ha-client.
+ jar lib/jboss-ha-legacy-client.jar lib/jboss-hibernate.jar lib/jboss-
+ iiop-client.jar lib/jboss-integration.jar lib/jboss-j2se.jar lib/jbos
+ s-javaee.jar lib/jboss-jsr77-client.jar lib/jboss-logging-jdk.jar lib
+ /jboss-logging-log4j.jar lib/jboss-logging-spi.jar lib/jboss-main-cli
+ ent.jar lib/jboss-mdr.jar lib/jboss-messaging-client.jar lib/jboss-re
+ moting.jar lib/jboss-security-spi.jar lib/jboss-serialization.jar lib
+ /jboss-srp-client.jar lib/jboss-system-client.jar lib/jboss-system-jm
+ x-client.jar lib/jbossall-client.jar lib/jbosscx-client.jar lib/jboss
+ sx-as-client.jar lib/jbosssx-client.jar lib/jmx-client.jar lib/jmx-in
+ voker-adaptor-client.jar lib/jnp-client.jar lib/junit.jar lib/jxl.jar
+  lib/log4j.jar lib/mockito-all-1.6.jar lib/nachocalendar-0.23.jar lib
+ /ojdbc14_g.jar lib/postgresql-8.2-506.jdbc2.jar lib/simuflex.jar lib/
+ slf4j-api.jar lib/slf4j-jboss-logging.jar lib/swing-layout-1.0.3.jar 
+ lib/xmlsec.jar lib/StockYardSamarcoRelatorio-0.0.1-SNAPSHOT.jar lib/d
+ ssStockYardSamarcoLogin-1.0.jar lib/itext-2.1.5.jar lib/hibernate-com
+ mons-annotations-3.3.0.ga.jar lib/hibernate-ehcache-3.3.1.GA.jar lib/
+ ehcache-1.6.0-rc1.jar lib/hibernate-core-3.3.1.GA.jar lib/c3p0-0.9.1.
+ jar lib/antlr-2.7.6.jar lib/cglib-nodep-2.1_3.jar lib/commons-beanutils-1.7.0.jar
+X-COMMENT: Main-Class will be added automatically by build
+

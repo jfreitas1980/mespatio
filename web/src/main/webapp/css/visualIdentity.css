@@ -1,0 +1,210 @@
+body{
+	margin: 0px;
+	padding: 0px;
+}
+
+a {
+  text-decoration: none;
+}
+
+INPUT {
+	font-family: Verdana;
+	font-size: 11px;
+	color: #000000;
+	width: 230px;
+	height: 20px;
+}
+
+SELECT {
+	font-family: Verdana;
+	font-size: 11px;
+	color: #000000;
+}
+
+TEXTAREA {
+	font-family: Verdana;
+	font-size: 11px;
+	color: #000000;
+	width: 230px;
+	height: 70px;
+}
+
+.checkBox {
+    font-family: Verdana;
+    font-size: 11px;
+    color: #000000;
+    padding: 0;
+    width: 20px;
+    height: 20px;
+}
+
+.body_background {
+	background: url("../imagens/bkg-conteudo-slice.png");	
+}
+
+.appTitle {
+	font-family: Verdana;
+	font-weight: bold;
+	font-size: 16px;
+	color: #444343;
+}
+
+.iFrameTitle {
+	font-family: Verdana;
+	font-weight: bold;
+	font-size: 14px;
+	color: #383838;
+	padding-top: 25px;
+	padding-bottom: 25px;
+}
+
+.hMessageDialog {
+    font-family: Verdana;
+    font-weight: bold;
+    font-size: 12px;
+    color: #383838;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+.hMessage {
+	font-family: Verdana;
+	font-weight: normal;
+	font-size: 11px;
+	color: blue;
+}
+
+.pickList {
+	width: 150px;
+	height: 180px;
+}
+
+.imgLink {
+	border: 0;
+}
+
+.tabela {
+	font-family: Verdana;
+	font-size: 11px;
+	color: #686868;
+}
+
+.cabecalho {
+	font-family: Verdana;
+    font-size: 11px;
+    font-weight: bold;
+	color: #FFFFFF;
+	background-color: #656565;
+	height: 23px;
+    text-align: left;
+    text-indent: 11px;
+}
+
+/*
+.cabecalho_first {
+	font-family: Verdana;
+    font-size: 11px;
+    font-weight: bold;
+	color: #FFFFFF;
+	background-color: #656565;
+	height: 23px;
+	text-align: left;
+	text-indent: 11px;
+}*/
+
+.linhaPar {
+	background-color: #CBC9C9;
+	height: 29px;
+	text-align: center;
+	padding-left: 11px;
+	padding-right: 11px;
+}
+
+.linhaImpar {
+	background-color: #EEEEEE;
+	height: 29px;
+	text-align: center;
+	padding-left: 11px;
+	padding-right: 11px;
+}
+
+.painelTabela {
+	background-color: #D9D9D9;
+}
+
+.customButton {
+	color: #383838;
+	background-image: url(../imagens/botao_01-a.png);
+	background-repeat: no-repeat;
+	height: 27px;
+	width: 70px;
+	padding-top: 5px;
+	text-align: center;
+	vertical-align: bottom;
+	font-family: Verdana;
+	font-size: 11px;
+}
+
+.scrollableTable {
+	height: 146px;
+	overflow: auto;
+}
+
+.box8 {
+	padding-top: 8px;
+	padding-left: 11px;
+	padding-right: 11px;
+}
+
+.box11 {
+	padding-top: 11px;
+	padding-left: 11px;
+	padding-right: 11px;
+}
+
+.boxAdd {
+	padding-top: 11px;
+	padding-bottom: 11px;
+	padding-left: 11px;
+	padding-right: 24px;
+}
+
+.boxCreateEdit {
+	font-family: Verdana;
+	font-size: 11px;
+	color: #686868;
+}
+
+.boxCreateEditRow {
+	background: #D9D9D9;
+	padding-left: 21px;
+	padding-right: 21px;
+	font-family: Verdana;
+}
+
+.boxSearchUserRow {
+	font-family: Verdana;
+	font-size: 11px;
+	color: #686868;
+	padding-left: 21px;
+	padding-right: 21px;
+	background: #D9D9D9;
+}
+
+.boxSearchUserRowFilter {
+	font-family: Verdana;
+	font-weight: bold;
+	font-size: 13px;
+	color: #686868;
+	padding-left: 21px;
+	padding-right: 21px;
+	background: #D9D9D9;
+}
+
+.boxSelectItem {
+	background: #D9D9D9;
+	padding-left: 21px;
+	padding-right: 21px;
+	font-family: Verdana;	
+	width: 170px;
+}

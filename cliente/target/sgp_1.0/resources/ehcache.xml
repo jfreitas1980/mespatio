@@ -1,0 +1,54 @@
+<ehcache>
+
+    <diskStore path="java.io.tmpdir"/>
+
+    <defaultCache
+        maxElementsInMemory="10000"
+        eternal="false"
+        timeToIdleSeconds="120"
+        timeToLiveSeconds="120"
+        overflowToDisk="true"
+        diskPersistent="false"
+        diskExpiryThreadIntervalSeconds="120"
+        memoryStoreEvictionPolicy="LRU"
+        />
+        
+    <cache name="com.hdntec.gestao.domain.produto.TipoItemDeControle"
+        maxElementsInMemory="300"
+        eternal="true"
+        overflowToDisk="false"
+        />
+    <cache name="com.hdntec.gestao.domain.produto.TipoProduto"
+        maxElementsInMemory="300"
+        eternal="true"
+        overflowToDisk="false"
+        />    
+    
+     <cache name="com.hdntec.gestao.domain.produto.RegraFarol"
+        maxElementsInMemory="300"
+        eternal="true"
+        overflowToDisk="false"
+        />      
+     <cache name="com.hdntec.gestao.domain.produto.CoeficienteDeDegradacao"
+        maxElementsInMemory="300"
+        eternal="true"
+        overflowToDisk="false"
+        />   
+       <cache name="com.hdntec.gestao.domain.produto.MetaInterna"
+        maxElementsInMemory="300"
+        eternal="true"
+        overflowToDisk="false"
+        />
+       
+        <!--
+    <cache name="com.hdntec.gestao.domain.produto.ItemDeControleAmostra"
+        maxElementsInMemory="500000"
+        eternal="false"
+        overflowToDisk="false"
+        />
+    <cache name="com.hdntec.gestao.domain.produto.ItemDeControleQualidade"
+        maxElementsInMemory="500000"
+        eternal="false"
+        overflowToDisk="false"
+        />
+--></ehcache>

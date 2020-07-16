@@ -1,0 +1,140 @@
+create or replace
+PROCEDURE            "DELETARSITUACAO"
+(IDSituacao  IN NUMBER)
+  IS
+cursor cRastreabilidade (p_id in number)  is
+   select * from rast_produto where idproduto = p_id;
+
+cursor cQualidades (p_id in number)  is
+   select * from qualidade where idqualidade = p_id;
+
+cursor cMovimentacaoNavio (p_id in number)  is
+   select * from movimentacaonavio where idatividade = p_id;
+
+cursor cLugaresEmpilhamento (p_id in number)  is
+   select * from lugarempilhamentorecuperacao where idatividade = p_id;
+
+cursor cAtividadeCampanha (p_id in number)  is
+   select * from lugar_campanha where idlugarempilharecupera = p_id;
+cursor cCarga (p_id in number)  is
+   select * from lugar_carga where idlugarempilharecupera = p_id;
+cursor cMaquina (p_id in number)  is
+   select * from lugar_maquina where idlugarempilharecupera = p_id;
+cursor cBaliza (p_id in number)  is
+   select * from lugar_baliza where idlugarempilharecupera = p_id;
+cursor cCorreia (p_id in number)  is
+   select * from lugar_correia where idlugarempilharecupera = p_id;
+cursor cUsina (p_id in number)  is
+   select * from lugar_usina where idlugarempilharecupera = p_id;
+cursor cFiltragem (p_id in number)  is
+   select * from lugar_filtragem where idlugarempilharecupera = p_id;
+vIdAtividade number;
+vIdAtividadeAnterior number;
+vIdLugar number;
+vIdProduto number;
+vIdQualidade number;
+vErro varchar2(255);
+vidMetaNavio   navio.ID_META_NAVIO%type;
+BEGIN
+    select idatividade into vIdAtividade
+        from situacaopatio  where idsituacaopatio = IDSituacao;
+
+  select ATIVIDADEANTERIOR_ID into vIdAtividadeAnterior
+        from atividade  where id = vIdAtividade;
+        
+for c1 in cLugaresEmpilhamento(vIdAtividade) loop
+    vIdLugar := c1.idlugarempilharecupera;
+    for c in cAtividadeCampanha(vIdLugar) loop
+            delete from LUGAR_CAMPANHA where  idlugarempilharecupera = c.idlugarempilharecupera;
+            delete from ATIVIDADECAMPANHA where id_lugar =  c.idlugarempilharecupera;		
+            
+     end loop;
+
+    for c in cCarga(vIdLugar) loop
+            delete from LUGAR_CARGA where  idcarga = c.idcarga and idlugarempilharecupera = c.idlugarempilharecupera;
+            
+             -- recupera produto da baliza
+            select b.id_produto,p.id_qualidade 
+            into vidproduto,vIdQualidade
+            from carga b, produto p 
+            where  b.idcarga= c.idcarga
+            and b.id_produto = p.idproduto;
+            
+            -- deleta associação com rastreabilidade
+            for cR in cRastreabilidade(vidproduto) loop
+              delete from rast_produto where idrast = cr.idrast;                
+            end loop;
+            
+            delete from produto where idproduto = vidproduto;                        
+            delete from carga where  idcarga = c.idcarga;     
+    end loop;
+
+    for c in cCorreia(vIdLugar) loop
+            delete from LUGAR_CORREIA where  IDCORREIA = c.idcorreia and idlugarempilharecupera = c.idlugarempilharecupera;    
+            delete from correia where  idcorreia = c.idcorreia;
+      end loop;
+
+       for c in cUsina(vIdLugar) loop
+            delete from LUGAR_USINA where  IDUSINA = c.idusina and idlugarempilharecupera = c.idlugarempilharecupera;
+            delete from usina where  idusina =  c.idusina;
+      end loop;
+
+       for c in cFiltragem(vIdLugar) loop
+            delete from LUGAR_FILTRAGEM where  IDFILTRAGEM = c.idfiltragem and idlugarempilharecupera = c.idlugarempilharecupera;
+            delete from filtragem where  IDFILTRAGEM =  c.idfiltragem;
+      end loop;
+
+     for c in cMaquina(vIdLugar) loop
+            delete from LUGAR_MAQUINA where  IDMAQUINA = c.idmaquina and idlugarempilharecupera = c.idlugarempilharecupera;
+            delete from MAQUINADOPATIO where  IDMAQUINA =  c.idmaquina;
+   
+     end loop;
+
+     for c in cBaliza(vIdLugar) loop
+            -- deleta lugar x baliza 
+            delete from LUGAR_BALIZA where  IDBALIZA = c.idbaliza and idlugarempilharecupera = c.idlugarempilharecupera;
+            -- recupera produto da baliza
+            select b.id_produto,p.id_qualidade 
+            into vidproduto,vIdQualidade
+            from baliza b, produto p 
+            where  b.IDBALIZA = c.idbaliza
+            and b.id_produto = p.idproduto;
+            
+            -- deleta associação com rastreabilidade
+            for cR in cRastreabilidade(vidproduto) loop
+              delete from rast_produto where idrast = cr.idrast;                
+            end loop;
+            -- deleta o produto antes da qualidade
+            delete from pilha_baliza where  IDBALIZA = c.idbaliza ;                        
+            delete from baliza where  IDBALIZA = c.idbaliza ;
+            delete from produto where idproduto = vidproduto;                                    
+            
+      end loop;
+   delete from lugarempilhamentorecuperacao where  idlugarempilharecupera = vIdLugar ;
+end loop;         
+    
+for c in cMovimentacaoNavio(vIdAtividade) loop
+        
+        select id_meta_navio into vidMetaNavio
+        from navio where idnavio = c.id_navio;              
+        delete from movimentacaonavio where  idmovimentacaonavio = c.idmovimentacaonavio ;                        
+        update navio set id_berco = null where  idnavio = c.id_navio;         
+        delete from berco where  idberco = c.id_berco;
+        delete from navio where  idnavio = c.id_navio;                                           
+        update navio set dt_fim = null where idnavio = (select max(idnavio)  from navio where id_meta_navio = vidMetaNavio);        
+end loop;
+         
+         delete from itemctrqualidade where id_qualidade not in (select id_qualidade from produto);
+         delete from qualidade_amostra where idqualidade not in (select id_qualidade from produto);                                
+         delete from qualidade where idqualidade not in (select id_qualidade from produto) and idqualidade  not in (select ID_QUALIDADEESTIMADA from campanha);              
+         delete from pilha p where p.idpilha not in (select idpilha from pilha_baliza);
+         delete from rastreabilidade p where p.idrastreabilidade not in (select r.idrast from rast_produto r);
+         delete from situacaopatio where  idsituacaopatio = IDSituacao ;         
+         delete from atividade where  id = vIdAtividade ;
+         -- caso exista atividade anterior 
+         -- atualiza os dados de fim dos objetos                   
+
+        if (vIdAtividadeAnterior is not null) then            
+           update atividade set dt_fim = null where id = vIdAtividadeAnterior;
+         end if; 
+END;

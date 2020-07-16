@@ -1,0 +1,622 @@
+
+package com.hdntec.gestao.cliente.interfaceDeDialogo.interfaceDiagramaSituacaoDoPatio;
+
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Vector;
+
+import javax.swing.JLabel;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JPopupMenu;
+import javax.swing.SwingConstants;
+
+import com.hdntec.gestao.cliente.interfaceDeDialogo.interfaceDeFilaDeNavios.InterfacePier;
+import com.hdntec.gestao.cliente.messagens.InterfaceMensagem;
+import com.hdntec.gestao.cliente.util.tabela.CFlexStockyardFuncoesTabela;
+import com.hdntec.gestao.cliente.util.tabela.CFlexStockyardTableModelCustom;
+import com.hdntec.gestao.cliente.util.tabela.ColunaTabela;
+import com.hdntec.gestao.domain.planta.dao.MetaPierDAO;
+import com.hdntec.gestao.domain.planta.entity.status.Interdicao;
+import com.hdntec.gestao.domain.planta.entity.status.Pier;
+import com.hdntec.gestao.exceptions.ErroSistemicoException;
+import com.hdntec.gestao.exceptions.ValidacaoCampoException;
+import com.hdntec.gestao.util.PropertiesUtil;
+import com.hdntec.gestao.util.datahora.DSSStockyardTimeUtil;
+
+public class InterfaceInterdicoes extends javax.swing.JDialog {
+
+    /** Constantes referente a tabela de interdicoes já realizadas */
+    private final int COL_INTERDICAO_BALIZA_PATIO = 0;
+    private final int COL_INTERDICAO_BALIZA_DATAINICIO = 1;
+    private final int COL_INTERDICAO_BALIZA_DATAFINAL = 2;
+    private JPopupMenu popMnuManipularInterdicao;
+    /** o controlador dos subsistemas do dsp */
+    private ControladorDSP controladorDSP;
+
+    private List<Interdicao> listaInterdicoes;
+    private List<Interdicao> listaInterdicoesRemovidas;
+    private List<ColunaTabela> listaColunasInterdicoes;
+
+    private Vector vInformacoesInterdicoes;
+
+    /** a interface das mensagens de interdicao */
+    private InterfaceMensagem interfaceMensagem;
+
+    /** flag de operacao cancelada pelo usuario */
+    private Boolean operacaoCanceladaPeloUsuario;
+
+    /** a interface de pier a ser interditada */
+    private InterfacePier interfacePierSelecionada;
+    private Interdicao interdicaoAtual;
+
+    /** Creates new form InterfaceInterdicoes */
+    public InterfaceInterdicoes(java.awt.Frame parent, boolean modal, ControladorDSP controladorDSP,
+                   InterfacePier interfacePier) {
+        super(parent, modal);
+        initComponents();
+        this.controladorDSP = controladorDSP;
+      
+        if (interfacePier != null) {
+            cmdInterditarPier.setEnabled(true);
+            this.interfacePierSelecionada = interfacePier;            
+            try {
+
+                criaColunasListaInterdicoes();
+                atualizarTabelaDeInterdicoes();
+            } catch (ErroSistemicoException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+        operacaoCanceladaPeloUsuario = false;
+    }
+
+    /** Metodo que cria as colunas referente as balizas já interditadas */
+    private void criaColunasListaInterdicoes() {
+        
+        criaPopMenuParaInterdicao();
+        vInformacoesInterdicoes = new Vector();
+
+        tblInterdicoesRealizadas.setModel(new CFlexStockyardTableModelCustom());
+        tblInterdicoesRealizadas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblInterdicoesRealizadasMouseClicked(evt);
+            }
+
+        });
+
+        
+        listaInterdicoes = new ArrayList<Interdicao>();
+        listaInterdicoesRemovidas = new ArrayList<Interdicao>();
+        listaColunasInterdicoes = new ArrayList<ColunaTabela>();
+        ColunaTabela colInfo;
+
+        colInfo = new ColunaTabela();
+        colInfo.setAlinhamento(SwingConstants.CENTER);
+        colInfo.setEditar(Boolean.FALSE);
+        colInfo.setLargura(60);
+        colInfo.setRedimensionar(Boolean.FALSE);
+        colInfo.setTitulo("Pier");
+        listaColunasInterdicoes.add(colInfo);
+
+        colInfo = new ColunaTabela();
+        colInfo.setAlinhamento(SwingConstants.CENTER);
+        colInfo.setEditar(Boolean.FALSE);
+        colInfo.setLargura(130);
+        colInfo.setRedimensionar(Boolean.FALSE);
+        colInfo.setTitulo("Início Interdição");
+        listaColunasInterdicoes.add(colInfo);
+
+        colInfo = new ColunaTabela();
+        colInfo.setAlinhamento(SwingConstants.CENTER);
+        colInfo.setEditar(Boolean.FALSE);
+        colInfo.setLargura(130);
+        colInfo.setRedimensionar(Boolean.FALSE);
+        colInfo.setTitulo("Final Interdição");
+        listaColunasInterdicoes.add(colInfo);
+
+    }
+
+    /** This method is called from within the constructor to
+     * initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is
+     * always regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        grpTipoInterdicao = new javax.swing.ButtonGroup();
+        pnlPrincipal = new javax.swing.JPanel();
+        pnlInformacoesPier = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        txtNomePier = new javax.swing.JTextField();
+        txtEstadoPier = new javax.swing.JTextField();
+        txtSituacaoAtual = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        dataHoraInicioInterdicao = new com.hdntec.gestao.cliente.util.datahora.CalendarioHoraCFlex();
+        jLabel3 = new javax.swing.JLabel();
+        dataHoraFinalInterdicao = new com.hdntec.gestao.cliente.util.datahora.CalendarioHoraCFlex();
+        cmdInterditarPier = new javax.swing.JButton();
+        pnlInterdicoesRealizadas = new javax.swing.JPanel();
+        scrInterdicoesRealizadas = new javax.swing.JScrollPane();
+        tblInterdicoesRealizadas = new com.hdntec.gestao.cliente.util.tabela.bean.CFlexStockyardJTable();
+        cmdDesistir = new javax.swing.JButton();
+        cmdConfirmar = new javax.swing.JButton();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Interdições de Pier");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
+
+        pnlInformacoesPier.setBorder(javax.swing.BorderFactory.createTitledBorder("Informações para interdição de pier"));
+
+        jLabel4.setFont(new java.awt.Font("Arial", 1, 12));
+        jLabel4.setText("Pier:");
+
+        jLabel5.setFont(new java.awt.Font("Arial", 1, 12));
+        jLabel5.setText("Estado:");
+
+        jLabel6.setFont(new java.awt.Font("Arial", 1, 12));
+        jLabel6.setText("Situação:");
+
+        txtNomePier.setEditable(false);
+        txtNomePier.setFont(new java.awt.Font("Arial", 0, 12));
+
+        txtEstadoPier.setEditable(false);
+        txtEstadoPier.setFont(new java.awt.Font("Arial", 0, 12));
+
+        txtSituacaoAtual.setEditable(false);
+        txtSituacaoAtual.setFont(new java.awt.Font("Arial", 0, 12));
+
+        jLabel2.setFont(new java.awt.Font("Arial", 1, 12));
+        jLabel2.setText("Data e hora de início:");
+
+        dataHoraInicioInterdicao.setFont(new java.awt.Font("Arial", 0, 12));
+
+        jLabel3.setFont(new java.awt.Font("Arial", 1, 12));
+        jLabel3.setText("Data e hora de término:");
+
+        dataHoraFinalInterdicao.setFont(new java.awt.Font("Arial", 0, 12));
+
+        cmdInterditarPier.setFont(new java.awt.Font("Arial", 1, 12));
+        //cmdInterditarPier.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icones/up.png"))); // NOI18N
+        cmdInterditarPier.setText("Interditar");
+        cmdInterditarPier.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdInterditarPierActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlInformacoesPierLayout = new javax.swing.GroupLayout(pnlInformacoesPier);
+        pnlInformacoesPier.setLayout(pnlInformacoesPierLayout);
+        pnlInformacoesPierLayout.setHorizontalGroup(
+            pnlInformacoesPierLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlInformacoesPierLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlInformacoesPierLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlInformacoesPierLayout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtNomePier, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtEstadoPier, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel6)
+                        .addGap(8, 8, 8)
+                        .addComponent(txtSituacaoAtual, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
+                        .addGap(10, 10, 10))
+                    .addGroup(pnlInformacoesPierLayout.createSequentialGroup()
+                        .addGroup(pnlInformacoesPierLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlInformacoesPierLayout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(10, 10, 10))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlInformacoesPierLayout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(24, 24, 24)))
+                        .addGroup(pnlInformacoesPierLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(dataHoraInicioInterdicao, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlInformacoesPierLayout.createSequentialGroup()
+                                .addComponent(dataHoraFinalInterdicao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                                .addComponent(cmdInterditarPier, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap())))
+        );
+        pnlInformacoesPierLayout.setVerticalGroup(
+            pnlInformacoesPierLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlInformacoesPierLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlInformacoesPierLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(txtNomePier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5)
+                    .addComponent(txtEstadoPier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6)
+                    .addComponent(txtSituacaoAtual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlInformacoesPierLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(dataHoraInicioInterdicao, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(7, 7, 7)
+                .addGroup(pnlInformacoesPierLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlInformacoesPierLayout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(jLabel3))
+                    .addGroup(pnlInformacoesPierLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(cmdInterditarPier)
+                        .addComponent(dataHoraFinalInterdicao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        pnlInterdicoesRealizadas.setBorder(javax.swing.BorderFactory.createTitledBorder("Interdições já realizadas no sistema"));
+
+        tblInterdicoesRealizadas.setModel(new CFlexStockyardTableModelCustom());
+        scrInterdicoesRealizadas.setViewportView(tblInterdicoesRealizadas);
+
+        javax.swing.GroupLayout pnlInterdicoesRealizadasLayout = new javax.swing.GroupLayout(pnlInterdicoesRealizadas);
+        pnlInterdicoesRealizadas.setLayout(pnlInterdicoesRealizadasLayout);
+        pnlInterdicoesRealizadasLayout.setHorizontalGroup(
+            pnlInterdicoesRealizadasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlInterdicoesRealizadasLayout.createSequentialGroup()
+                .addComponent(scrInterdicoesRealizadas, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(20, Short.MAX_VALUE))
+        );
+        pnlInterdicoesRealizadasLayout.setVerticalGroup(
+            pnlInterdicoesRealizadasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlInterdicoesRealizadasLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(scrInterdicoesRealizadas, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        cmdDesistir.setFont(new java.awt.Font("Tahoma", 1, 12));
+        //cmdDesistir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icones/exit.png"))); // NOI18N
+        cmdDesistir.setText(PropertiesUtil.getMessage("botao.desistir"));
+        cmdDesistir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdDesistirActionPerformed(evt);
+            }
+        });
+
+        cmdConfirmar.setFont(new java.awt.Font("Tahoma", 1, 12));
+        //cmdConfirmar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icones/confirmar.png"))); // NOI18N
+        cmdConfirmar.setText(PropertiesUtil.getMessage("botao.confirmar"));
+        cmdConfirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdConfirmarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlPrincipalLayout = new javax.swing.GroupLayout(pnlPrincipal);
+        pnlPrincipal.setLayout(pnlPrincipalLayout);
+        pnlPrincipalLayout.setHorizontalGroup(
+            pnlPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlPrincipalLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlPrincipalLayout.createSequentialGroup()
+                        .addComponent(pnlInterdicoesRealizadas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(pnlPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cmdConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 157, Short.MAX_VALUE)
+                            .addComponent(cmdDesistir, 0, 0, Short.MAX_VALUE)))
+                    .addComponent(pnlInformacoesPier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(259, 259, 259))
+        );
+        pnlPrincipalLayout.setVerticalGroup(
+            pnlPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlPrincipalLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(pnlInformacoesPier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(pnlInterdicoesRealizadas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(pnlPrincipalLayout.createSequentialGroup()
+                        .addComponent(cmdDesistir)
+                        .addGap(18, 18, 18)
+                        .addComponent(cmdConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(15, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(pnlPrincipal, java.awt.BorderLayout.CENTER);
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt)//GEN-FIRST:event_formWindowClosing
+    {//GEN-HEADEREND:event_formWindowClosing
+        operacaoCanceladaPeloUsuario = true;
+    }//GEN-LAST:event_formWindowClosing
+
+   
+    private void cmdDesistirActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_cmdDesistirActionPerformed
+    {//GEN-HEADEREND:event_cmdDesistirActionPerformed
+        operacaoCanceladaPeloUsuario = true;
+        setVisible(false);
+    }//GEN-LAST:event_cmdDesistirActionPerformed
+
+    private void cmdConfirmarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_cmdConfirmarActionPerformed
+    {//GEN-HEADEREND:event_cmdConfirmarActionPerformed
+        if (interfacePierSelecionada != null) {      
+            try {                
+                Pier pierInterdicao = interfacePierSelecionada.getPierVisualizado();               
+                pierInterdicao.getMetaPier().getListaInterdicao().removeAll(listaInterdicoesRemovidas);
+                pierInterdicao.getMetaPier().addInterdicao(listaInterdicoes);                
+                // criaInterdicaoParaPier(pierInterdicao);
+                MetaPierDAO dao = new MetaPierDAO();                
+                
+                    dao.salvaMetaPier(pierInterdicao.getMetaPier());
+                } catch (ErroSistemicoException e) {
+                    // TODO Auto-generated catch block
+                    controladorDSP.getInterfaceInicial().desativarMensagemProcessamento();
+                    interfaceMensagem = new InterfaceMensagem();
+                    interfaceMensagem.setTipoMensagem(InterfaceMensagem.MENSAGEM_TIPO_ALERTA);
+                    interfaceMensagem.setDescricaoMensagem(e.getMessage());
+                    controladorDSP.ativarMensagem(interfaceMensagem);
+                }
+        }
+        operacaoCanceladaPeloUsuario = false;
+        setVisible(false);
+    }//GEN-LAST:event_cmdConfirmarActionPerformed
+
+    private void cmdInterditarPierActionPerformed(java.awt.event.ActionEvent evt)                                                   
+    {                                                              
+        Pier pierInterdicao = interfacePierSelecionada.getPierVisualizado();
+       
+        try {
+            criaInterdicaoParaPier(pierInterdicao);            
+            atualizarTabelaDeInterdicoes();      
+            this.interdicaoAtual = null;
+            this.cmdInterditarPier.setText("Interditar");
+            this.dataHoraInicioInterdicao.setDataHora(interfacePierSelecionada.getHoraSituacao());
+            this.dataHoraFinalInterdicao.setDataHora(interfacePierSelecionada.getHoraSituacao());
+        } catch (ValidacaoCampoException e1) {
+            controladorDSP.getInterfaceInicial().desativarMensagemProcessamento();
+            interfaceMensagem = new InterfaceMensagem();
+            interfaceMensagem.setTipoMensagem(InterfaceMensagem.MENSAGEM_TIPO_ALERTA);
+            interfaceMensagem.setDescricaoMensagem(e1.getMessage());
+            controladorDSP.ativarMensagem(interfaceMensagem);            
+        } catch (ErroSistemicoException e) {
+            controladorDSP.getInterfaceInicial().desativarMensagemProcessamento();
+            interfaceMensagem = new InterfaceMensagem();
+            interfaceMensagem.setTipoMensagem(InterfaceMensagem.MENSAGEM_TIPO_ALERTA);
+            interfaceMensagem.setDescricaoMensagem(e.getMessage());
+            controladorDSP.ativarMensagem(interfaceMensagem);            
+        }
+         
+    }                                                 
+
+    /** Metodo que seleciona toda a lista de interdicoes
+    
+    /** Metodo que valida as informacoes de interdicao de balizas */
+    private void validarInformacoesInterdicao(Interdicao interdicaoNova) throws ValidacaoCampoException {
+        
+        if (dataHoraFinalInterdicao.getDataHoraDate().before(dataHoraInicioInterdicao.getDataHoraDate())) {
+            throw new ValidacaoCampoException("Data Final menor que Data inicial da interdição, operação não realizada.");        
+        }
+        
+        
+        for (Interdicao interdicao : listaInterdicoes)
+        {       
+            
+            if (this.interdicaoAtual != null && !this.interdicaoAtual.equals(interdicao)) {
+                if ((interdicao.getDataInicial().getTime() > interdicaoNova.getInicio() &&
+                                interdicao.getDataInicial().getTime() < interdicaoNova.getFim()) ||                    
+                     (interdicao.getDataInicial().getTime() == interdicaoNova.getInicio() &&
+                      interdicao.getDataFinal().getTime() == interdicaoNova.getFim()) ||                                
+
+                      (interdicao.getDataFinal().getTime() > interdicaoNova.getInicio() && 
+                                     interdicao.getDataFinal().getTime() < interdicaoNova.getFim()) ||                     
+                     (interdicaoNova.getInicio() > interdicao.getDataInicial().getTime() &&
+                     interdicaoNova.getInicio() < interdicao.getDataFinal().getTime()) ||
+                    
+                     (interdicaoNova.getFim() > interdicao.getDataInicial().getTime() && 
+                    interdicaoNova.getFim() < interdicao.getDataFinal().getTime()))         
+                        throw new ValidacaoCampoException("Existem interdição no mesmo período definido.");
+                }
+            }
+        }
+        
+
+    
+    
+    
+    /**
+     * Limpa a tabela que contem as informacoes das campanhas
+     * @throws java.lang.Exception
+     */
+    private void limpaTabelaDeInterdicoes() throws ErroSistemicoException {
+        vInformacoesInterdicoes.removeAllElements();
+        CFlexStockyardFuncoesTabela.setInformacoesTabela(tblInterdicoesRealizadas, vInformacoesInterdicoes,
+                        listaColunasInterdicoes);
+    }
+
+    /** Metodo que recarrega a tabela de balizas interditadas */
+    private void atualizarTabelaDeInterdicoes() throws ErroSistemicoException {        
+        limpaTabelaDeInterdicoes();                
+        
+        txtNomePier.setText(interfacePierSelecionada.getPierVisualizado().getNomePier());
+        txtEstadoPier.setText(interfacePierSelecionada.getPierVisualizado().getEstado().toString());        
+          for (Interdicao interdicao : interfacePierSelecionada.getPierVisualizado().getMetaPier().getInterdicoesAbertas(interfacePierSelecionada.getHoraSituacao()))
+             if (!listaInterdicoes.contains(interdicao)) {
+                 listaInterdicoes.add(interdicao);  
+          } 
+            //listaInterdicoes.addAll(interfacePierSelecionada.getPierVisualizado().getMetaPier().getInterdicoesAbertas(interfacePierSelecionada.getHoraSituacao()));
+        listaInterdicoes.removeAll(listaInterdicoesRemovidas);
+        
+        if (interfacePierSelecionada.getPierVisualizado().getMetaPier().pierInterditado(listaInterdicoes,interfacePierSelecionada.getHoraSituacao())) {
+            txtSituacaoAtual.setText("PIER INTERDITADO");
+        } else {
+            txtSituacaoAtual.setText("PIER LIBERADO");
+        }
+        
+        
+        if (this.interdicaoAtual != null) {
+            this.dataHoraInicioInterdicao.setDataHora(this.interdicaoAtual.getDataInicial());
+            this.dataHoraFinalInterdicao.setDataHora(this.interdicaoAtual.getDataFinal());
+        }
+        
+        if (listaInterdicoes != null && !listaInterdicoes.isEmpty()) {
+            for (Interdicao inter : listaInterdicoes) {
+                Object[] dados = new Object[3];
+                dados[COL_INTERDICAO_BALIZA_PATIO] = interfacePierSelecionada.getPierVisualizado().getNomePier();
+                dados[COL_INTERDICAO_BALIZA_DATAINICIO] = DSSStockyardTimeUtil.formatarData(inter.getDataInicial(),
+                                PropertiesUtil.buscarPropriedade("formato.campo.datahora"));
+                dados[COL_INTERDICAO_BALIZA_DATAFINAL] = DSSStockyardTimeUtil.formatarData(inter.getDataFinal(),
+                                PropertiesUtil.buscarPropriedade("formato.campo.datahora"));
+                // dados[COL_INTERDICAO_BALIZA_LIBERACAO] = new JCheckBox("", false);
+                vInformacoesInterdicoes.add(new Vector(Arrays.asList(dados)));
+            }
+        }
+        CFlexStockyardFuncoesTabela.setInformacoesTabela(tblInterdicoesRealizadas, vInformacoesInterdicoes,
+                        listaColunasInterdicoes);        
+    }
+
+    /** Metodo que cria uma interdicao para uma determinada baliza 
+     * @throws ValidacaoCampoException */
+    private void criaInterdicaoParaPier(Pier pierInterdicao) throws ValidacaoCampoException {
+        
+        Interdicao interdicaoPier = null;
+        if (this.interdicaoAtual != null) {
+            interdicaoPier = this.interdicaoAtual;
+        } else {
+            interdicaoPier = new Interdicao();
+        }
+
+        interdicaoPier.setDataInicial(dataHoraInicioInterdicao.getDataHoraDate());
+        interdicaoPier.setDataFinal(dataHoraFinalInterdicao.getDataHoraDate());
+        validarInformacoesInterdicao(interdicaoPier);        
+        if (!listaInterdicoes.contains(interdicaoPier))  listaInterdicoes.add(interdicaoPier);
+    }
+
+    public Boolean getOperacaoCanceladaPeloUsuario() {
+        return operacaoCanceladaPeloUsuario;
+    }
+
+
+    private void tblInterdicoesRealizadasMouseClicked(MouseEvent evt) {
+        // TODO Auto-generated method stub
+
+        if (evt.getButton() == MouseEvent.BUTTON3) {
+            int linhaSelecionada = tblInterdicoesRealizadas.rowAtPoint(evt.getPoint());
+            tblInterdicoesRealizadas.setRowSelectionInterval(linhaSelecionada, linhaSelecionada);
+        
+            this.interdicaoAtual = listaInterdicoes.get(linhaSelecionada);
+            popMnuManipularInterdicao.show(tblInterdicoesRealizadas, evt.getX(), evt.getY());
+
+        }
+    }
+
+    private void criaPopMenuParaInterdicao() {
+
+        popMnuManipularInterdicao = new JPopupMenu();
+
+        JMenuItem mnuEditarCampanha = new JMenuItem();
+        mnuEditarCampanha.setText("Editar");
+        mnuEditarCampanha.addActionListener(new java.awt.event.ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                editarDadosInterdicao();
+            }
+        });
+        popMnuManipularInterdicao.add(mnuEditarCampanha);
+
+        //JMenuItem
+        JMenuItem mnuExcluirCampanha = new JMenuItem();
+        mnuExcluirCampanha.setText("Excluir");
+        mnuExcluirCampanha.addActionListener(new java.awt.event.ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                    excluiDadosInterdicao();
+            }
+        });
+        popMnuManipularInterdicao.add(mnuExcluirCampanha);
+    }
+
+    
+    private void editarDadosInterdicao() {
+        // TODO Auto-generated method stub
+        try {            
+            atualizarTabelaDeInterdicoes();     
+            this.cmdInterditarPier.setText("Atualizar");
+        } catch (ErroSistemicoException e) {
+            // TODO Auto-generated catch block
+            controladorDSP.getInterfaceInicial().desativarMensagemProcessamento();
+            interfaceMensagem = new InterfaceMensagem();
+            interfaceMensagem.setTipoMensagem(InterfaceMensagem.MENSAGEM_TIPO_ALERTA);
+            interfaceMensagem.setDescricaoMensagem(e.getMessage());
+            controladorDSP.ativarMensagem(interfaceMensagem);  
+        }      
+    }
+
+    private void excluiDadosInterdicao()  {
+            if (this.interdicaoAtual != null) {
+                StringBuffer buffer = new StringBuffer();
+                buffer.append(interfacePierSelecionada.getPierVisualizado().getNomePier());
+                buffer.append(" - ");
+                buffer.append(this.interdicaoAtual.getDataInicial());
+                buffer.append(" - ");
+                buffer.append(this.interdicaoAtual.getDataFinal());
+                
+                JLabel pergunta = new JLabel("Deseja excluir a Interdição " + buffer.toString());
+                
+                pergunta.setFont(new Font("Tahoma", Font.PLAIN, 11));
+                int confirm = JOptionPane.showOptionDialog(null, pergunta, PropertiesUtil.getMessage("popup.atencao"),
+                                JOptionPane.YES_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
+    
+                if (confirm == JOptionPane.NO_OPTION) {
+                    return;
+    
+                } else {                    
+                    listaInterdicoesRemovidas.add(this.interdicaoAtual);                    
+                    try {
+                        atualizarTabelaDeInterdicoes();
+                    } catch (ErroSistemicoException e) {
+                        // TODO Auto-generated catch block
+                        controladorDSP.getInterfaceInicial().desativarMensagemProcessamento();
+                        interfaceMensagem = new InterfaceMensagem();
+                        interfaceMensagem.setTipoMensagem(InterfaceMensagem.MENSAGEM_TIPO_ALERTA);
+                        interfaceMensagem.setDescricaoMensagem(e.getMessage());
+                        controladorDSP.ativarMensagem(interfaceMensagem);  
+                    }                    
+                }
+    
+            }           
+        }
+    
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton cmdConfirmar;
+    private javax.swing.JButton cmdDesistir;
+    private javax.swing.JButton cmdInterditarPier;
+    private com.hdntec.gestao.cliente.util.datahora.CalendarioHoraCFlex dataHoraFinalInterdicao;
+    private com.hdntec.gestao.cliente.util.datahora.CalendarioHoraCFlex dataHoraInicioInterdicao;
+    private javax.swing.ButtonGroup grpTipoInterdicao;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JPanel pnlInformacoesPier;
+    private javax.swing.JPanel pnlInterdicoesRealizadas;
+    private javax.swing.JPanel pnlPrincipal;
+    private javax.swing.JScrollPane scrInterdicoesRealizadas;
+    private com.hdntec.gestao.cliente.util.tabela.bean.CFlexStockyardJTable tblInterdicoesRealizadas;
+    private javax.swing.JTextField txtEstadoPier;
+    private javax.swing.JTextField txtNomePier;
+    private javax.swing.JTextField txtSituacaoAtual;
+    // End of variables declaration//GEN-END:variables
+}
